@@ -31,15 +31,15 @@ function Canvas() {
     }
 
     circles = SphereGenerator(sphereOptions);
-
+    console.log(circles);
     //MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
   };
 
   const onRender = (scene: any) => {
     if (circles !== undefined) {
-      var deltaTimeInMillis = scene.getEngine().getDeltaTime();
+      //var deltaTimeInMillis = scene.getEngine().getDeltaTime();
 
-      const rpm = 10;
+      //const rpm = 10;
       // sphere.rotation.y += (rpm / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000);
     }
   };

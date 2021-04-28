@@ -11,10 +11,11 @@ const CreateDot = (attributes: Dot) => {
   const { x, y, z, parent } = attributes;
 
   const dotId = 'sphere' + x + y + z;
-
-  let dot: Mesh = MeshBuilder.CreateSphere(dotId, {
+  const options =  {
     diameter: .05,
-  }, parent);
+  }
+
+  let dot: Mesh = MeshBuilder.CreateSphere(dotId, options, parent);
 
   dot.position.x = x;
   dot.position.y = y;
