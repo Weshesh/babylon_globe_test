@@ -3,8 +3,8 @@ import { CircleGenerator, CircleGeneratorProps } from './CircleGenerator'
 import CreateDot from './CreateDot';
 
 interface SphereGeneratorProps {
-  radius: number,
-  step: number
+  sphereRadius: number,
+  dotsOnTheEquator: number,
   parent: any
 }
 export interface DotCoordinates {
@@ -15,20 +15,27 @@ export interface DotCoordinates {
 
 function SphereGenerator(props: SphereGeneratorProps): Mesh[] {
 
-  const { radius, step, parent } = props;
+  const { sphereRadius, dotsOnTheEquator, parent } = props;
 
   let sphereCoordinates: DotCoordinates[] = [];
   let sphere: Mesh[] = [];
 
-  for (let yIndex = 0; yIndex < 1; yIndex += step) {
+  const semicircleCircumference = Math.PI;
+  const step = semicircleCircumference / dotsOnTheEquator;
+  console.log('step', step);
 
+  for (let yIndex = 0; yIndex <= semicircleCircumference; yIndex += step) {
+    console.log('Itertion', yIndex);
+    console.log('cos',  Math.cos(yIndex));
     //let y: number, x: number, z: number;
+    const yCoordinate = Math.cos(yIndex) * sphereRadius;
 
     let dotPositionsOnAPlane: DotCoordinates[];
 
     const circleGeneratorParameters: CircleGeneratorProps = {
-      yCoordinate: 0,
-      radius: radius
+      yCoordinate: yCoordinate,
+      sphereRadius: sphereRadius,
+      dotsOnTheEquator: dotsOnTheEquator
     }
 
     dotPositionsOnAPlane = CircleGenerator(circleGeneratorParameters);
@@ -37,7 +44,7 @@ function SphereGenerator(props: SphereGeneratorProps): Mesh[] {
 
   }
 
-  sphereCoordinates.forEach(dotCoordinates => {
+  sphereCoordinates.forEach( dotCoordinates => {
     const { x, y, z } = dotCoordinates;
     sphere.push(CreateDot({x, y, z, parent}));
   })

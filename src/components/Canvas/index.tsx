@@ -25,9 +25,9 @@ function Canvas() {
     light.intensity = 0.7;
 
     const sphereOptions ={
-      radius: 4,
+      sphereRadius: 4,
       parent: scene,
-      step: 45
+      dotsOnTheEquator: 12
     }
 
     circles = SphereGenerator(sphereOptions);
