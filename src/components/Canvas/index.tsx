@@ -27,11 +27,11 @@ function Canvas() {
     const sphereOptions ={
       sphereRadius: 4,
       parent: scene,
-      dotsOnTheEquator: 12
+      dotsOnTheEquator: 24
     }
 
     circles = SphereGenerator(sphereOptions);
-    console.log(circles);
+    //console.log(circles);
     //MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
   };
 

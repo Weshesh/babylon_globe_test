@@ -1,4 +1,5 @@
 import { DotCoordinates } from './SphereGenerator';
+
 export interface CircleGeneratorProps {
   yIndex: number,
   yCoordinate: number,
@@ -7,7 +8,8 @@ export interface CircleGeneratorProps {
 }
 
 /**
- * @returns A collection of coordinates to draw a circle
+ * Takes in sphere specific parameters, including the current y value.
+ * @returns A collection of coordinates, needed to draw a circle.
  */
 
 export function CircleGenerator(props: CircleGeneratorProps): DotCoordinates[] {
@@ -15,13 +17,22 @@ export function CircleGenerator(props: CircleGeneratorProps): DotCoordinates[] {
 
   const radius = sphereRadius * Math.sin(yIndex);
   const circleCircumference = Math.PI * 2;
-  const spacing = dotsOnTheEquator / dotsOnTheEquator;
-  //const step = circleCircumference / spacing;
-  const step = circleCircumference / 24;
+
+  const multiplier = Math.sin(yIndex);
+  console.log(multiplier);
+
+  const dotsOnACircle = Math.abs(multiplier * dotsOnTheEquator)
+  console.log(dotsOnACircle);
+
+  const step = (multiplier === 0)
+    ? circleCircumference
+    : circleCircumference / dotsOnACircle;
+
+  console.log('step', step)
 
   let dotPositionsOnAPlane: DotCoordinates[] = [];
 
-  for (let circleIndex = 0; circleIndex <= circleCircumference; circleIndex += step) {
+  for (let circleIndex = step; circleIndex < circleCircumference + step; circleIndex += step) {
 
     const x = Math.cos(circleIndex) * radius;
     const z = Math.sin(circleIndex) * radius;

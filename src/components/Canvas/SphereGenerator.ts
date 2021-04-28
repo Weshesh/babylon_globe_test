@@ -22,13 +22,13 @@ function SphereGenerator(props: SphereGeneratorProps): Mesh[] {
 
   const semicircleCircumference = Math.PI;
   const step = semicircleCircumference / dotsOnTheEquator;
-  console.log('step', step);
+  //console.log('step', step);
   const endPoint = semicircleCircumference + step;
 
   for (let yIndex = 0; yIndex < endPoint; yIndex += step) {
-    console.log('Itertion', yIndex);
-    console.log('cos',  Math.cos(yIndex));
-    //let y: number, x: number, z: number;
+    //console.log('Itertion', yIndex);
+    //console.log('cos',  Math.cos(yIndex));
+
     const yCoordinate = Math.cos(yIndex) * sphereRadius;
 
     let dotPositionsOnAPlane: DotCoordinates[];
@@ -41,9 +41,7 @@ function SphereGenerator(props: SphereGeneratorProps): Mesh[] {
     }
 
     dotPositionsOnAPlane = CircleGenerator(circleGeneratorParameters);
-
     sphereCoordinates = [...sphereCoordinates, ...dotPositionsOnAPlane];
-
   }
 
   sphereCoordinates.forEach( dotCoordinates => {
