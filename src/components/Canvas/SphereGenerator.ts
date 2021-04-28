@@ -33,6 +33,7 @@ function SphereGenerator(props: SphereGeneratorProps): Mesh[] {
     let dotPositionsOnAPlane: DotCoordinates[];
 
     const circleGeneratorParameters: CircleGeneratorProps = {
+      yIndex: yIndex,
       yCoordinate: yCoordinate,
       sphereRadius: sphereRadius,
       dotsOnTheEquator: dotsOnTheEquator

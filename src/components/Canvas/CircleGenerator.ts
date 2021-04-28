@@ -1,5 +1,6 @@
 import { DotCoordinates } from './SphereGenerator';
 export interface CircleGeneratorProps {
+  yIndex: number,
   yCoordinate: number,
   sphereRadius: number,
   dotsOnTheEquator: number
@@ -10,9 +11,9 @@ export interface CircleGeneratorProps {
  */
 
 export function CircleGenerator(props: CircleGeneratorProps): DotCoordinates[] {
-  const { yCoordinate, sphereRadius, dotsOnTheEquator } = props;
+  const { yIndex, yCoordinate, sphereRadius, dotsOnTheEquator } = props;
 
-  const radius = sphereRadius * Math.sin(yCoordinate);
+  const radius = sphereRadius * Math.sin(yIndex);
   const circleCircumference = Math.PI * 2;
   const spacing = dotsOnTheEquator / dotsOnTheEquator;
   //const step = circleCircumference / spacing;
