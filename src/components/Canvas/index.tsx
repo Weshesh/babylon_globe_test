@@ -1,5 +1,5 @@
 import React from "react";
-import { FreeCamera, Vector3, HemisphericLight, Mesh } from "@babylonjs/core";
+import { FreeCamera, Vector3, HemisphericLight, Mesh, ArcRotateCamera } from "@babylonjs/core";
 import SceneComponent from "./SceneComponent"; // uses above component in same directory
 import SphereGenerator from './SphereGenerator'; // if you install 'babylonjs-hook' NPM.
 
@@ -8,8 +8,8 @@ function Canvas() {
 
   const onSceneReady = (scene: any) => {
     // This creates and positions a free camera (non-mesh)
-    var camera = new FreeCamera("camera1", new Vector3(0, 5, -10), scene);
 
+    let camera = new ArcRotateCamera("camera", 0, 0, 6, new Vector3(0, 5, -10), scene)
     // This targets the camera to scene origin
     camera.setTarget(Vector3.Zero());
 
