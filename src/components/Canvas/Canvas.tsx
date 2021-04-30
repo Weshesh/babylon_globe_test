@@ -1,5 +1,5 @@
 import React from "react";
-import { FreeCamera, Vector3, HemisphericLight, Mesh, ArcRotateCamera } from "@babylonjs/core";
+import { Vector3, HemisphericLight, Mesh, ArcRotateCamera } from "@babylonjs/core";
 import SceneComponent from "./SceneComponent"; // uses above component in same directory
 import SphereGenerator from './SphereGenerator'; // if you install 'babylonjs-hook' NPM.
 
