@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import Canvas from './components/Canvas';
+import { ReactElement } from 'react';
+import Canvas from './components/Canvas/Canvas';
 import "./App.css";
 
 

@@ -4,7 +4,7 @@ import CreateDot from './CreateDot';
 
 interface SphereGeneratorProps {
   sphereRadius: number,
-  dotsOnTheEquator: number,
+  spacing: number,
   parent: any
 }
 export interface DotCoordinates {
@@ -15,29 +15,30 @@ export interface DotCoordinates {
 
 function SphereGenerator(props: SphereGeneratorProps): Mesh[] {
 
-  const { sphereRadius, dotsOnTheEquator, parent } = props;
+  const { sphereRadius, spacing, parent } = props;
 
   let sphereCoordinates: DotCoordinates[] = [];
   let sphere: Mesh[] = [];
 
-  const semicircleCircumference = Math.PI;
-  const step = semicircleCircumference / dotsOnTheEquator;
-  //console.log('step', step);
-  const endPoint = semicircleCircumference + step;
+  const semiCircle = Math.PI;
+  const semiCircleLength = semiCircle * sphereRadius;
+  const howManyDotsOnAnArc = Math.floor(semiCircleLength / spacing);
+  const step = semiCircle / howManyDotsOnAnArc;
+  const endPoint = semiCircle + step;
 
   for (let yIndex = 0; yIndex < endPoint; yIndex += step) {
-    //console.log('Itertion', yIndex);
-    //console.log('cos',  Math.cos(yIndex));
 
     const yCoordinate = Math.cos(yIndex) * sphereRadius;
 
     let dotPositionsOnAPlane: DotCoordinates[];
 
+    const spacing = .5;
+
     const circleGeneratorParameters: CircleGeneratorProps = {
       yIndex: yIndex,
       yCoordinate: yCoordinate,
       sphereRadius: sphereRadius,
-      dotsOnTheEquator: dotsOnTheEquator
+      spacing: spacing
     }
 
     dotPositionsOnAPlane = CircleGenerator(circleGeneratorParameters);

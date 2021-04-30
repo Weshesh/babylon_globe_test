@@ -24,10 +24,10 @@ function Canvas() {
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    const sphereOptions ={
+    const sphereOptions = {
       sphereRadius: 4,
       parent: scene,
-      dotsOnTheEquator: 24
+      spacing: .5
     }
 
     circles = SphereGenerator(sphereOptions);

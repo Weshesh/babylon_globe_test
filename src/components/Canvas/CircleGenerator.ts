@@ -4,7 +4,7 @@ export interface CircleGeneratorProps {
   yIndex: number,
   yCoordinate: number,
   sphereRadius: number,
-  dotsOnTheEquator: number
+  spacing: number
 }
 
 /**
@@ -13,29 +13,24 @@ export interface CircleGeneratorProps {
  */
 
 export function CircleGenerator(props: CircleGeneratorProps): DotCoordinates[] {
-  const { yIndex, yCoordinate, sphereRadius, dotsOnTheEquator } = props;
+  const { yIndex, yCoordinate, sphereRadius, spacing } = props;
 
-  const radius = sphereRadius * Math.sin(yIndex);
-  const circleCircumference = Math.PI * 2;
+  const planeRadius = sphereRadius * Math.sin(yIndex);
+  const fullCircle = Math.PI * 2;
+  const planecircumference = fullCircle * planeRadius;
 
-  const multiplier = Math.sin(yIndex);
-  console.log(multiplier);
+  const howManyDotsOnAPlane = Math.floor(planecircumference / spacing);
 
-  const dotsOnACircle = Math.abs(multiplier * dotsOnTheEquator)
-  console.log(dotsOnACircle);
-
-  const step = (multiplier === 0)
-    ? circleCircumference
-    : circleCircumference / dotsOnACircle;
-
-  console.log('step', step)
+  const step = (planeRadius > 0)
+    ? fullCircle / howManyDotsOnAPlane
+    : fullCircle;
 
   let dotPositionsOnAPlane: DotCoordinates[] = [];
 
-  for (let circleIndex = step; circleIndex < circleCircumference + step; circleIndex += step) {
+  for (let circleIndex = 0; circleIndex < fullCircle; circleIndex += step) {
 
-    const x = Math.cos(circleIndex) * radius;
-    const z = Math.sin(circleIndex) * radius;
+    const x = Math.cos(circleIndex) * planeRadius;
+    const z = Math.sin(circleIndex) * planeRadius;
 
     const dotCoordinates: DotCoordinates = {
       x: x,
